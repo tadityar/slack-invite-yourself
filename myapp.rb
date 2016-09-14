@@ -8,8 +8,8 @@ end
 
 post '/invite' do
   if params[:email]
-    token = [REPLACE-WITH-YOUR-APPS-TOKEN-HERE]
-    channels = [REPLACE-WITH-THE-CHANNELS-CODES-HERE] #separated with commas
+    token = ENV['APP_TOKEN']
+    channels = ENV['CHANNELS'] #separated with commas
     response = open("https://slack.com/api/users.admin.invite?token=#{token}&channels=#{channels}&email=#{params[:email]}&first_name=Example&set_active=true").read
     erb :invited, :locals => {'email' => params[:email]}
   else
